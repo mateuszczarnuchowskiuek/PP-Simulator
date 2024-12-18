@@ -8,30 +8,7 @@ public abstract class Creature
         get { return name; }
         init
         {
-            if (value == null)
-                name = "Unknown";
-            else
-            {
-                name = value.Trim();
-                if (name.Length == 0)
-                    name = "Unknown";
-                if (name.Length == 1)
-                    name += "##";
-                else if (name.Length == 2)
-                    name += "#";
-                else if (name.Length > 25)
-                    name = name[..25];
-                name = name.Trim();
-
-                if (name.Length == 0)
-                    name = "Unknown";
-                if (name.Length == 1)
-                    name += "##";
-                else if (name.Length == 2)
-                    name += "#";
-
-                name = name[0].ToString().ToUpper() + name[1..];
-            }
+            name = Validator.Shortener(value, 3, 25, '#');
         }
     }
     private int level = 1;
@@ -40,12 +17,7 @@ public abstract class Creature
         get { return level; }
         init
         {
-            if (value < 1)
-                level = 1;
-            else if (value > 10)
-                level = 10;
-            else
-                level = value;
+            level = Validator.Limiter(value, 1, 10);
         }
     }
 
@@ -60,16 +32,12 @@ public abstract class Creature
     }
 
     public abstract void SayHi();
-    public string Info
-    {
-        get { return $"{this.Name} [{this.Level}]"; }
-    }
+    public abstract string Info { get; }
 
     public void Upgrade()
     {
-        level += 1;
-        if (level > 10)
-            level = 10;
+        level++;
+        level = Validator.Limiter(level, 0, 10);
     }
 
     public void Go(Direction direction)
@@ -93,4 +61,9 @@ public abstract class Creature
     }
 
     public abstract int Power { get; }
+
+    public override string ToString()
+    {
+        return $"{this.GetType().Name.ToUpper()}: {this.Info}";
+    }
 }
