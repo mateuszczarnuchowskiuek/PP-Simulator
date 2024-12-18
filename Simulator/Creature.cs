@@ -1,6 +1,6 @@
 namespace Simulator;
 
-public class Creature
+public abstract class Creature
 {
     private string name = "Unknown";
     public string Name
@@ -59,10 +59,7 @@ public class Creature
         //empty constructor
     }
 
-    public void SayHi()
-    {
-        Console.WriteLine($"Hi, I'm {this.Name}, my level is {this.Level}.");
-    }
+    public abstract void SayHi();
     public string Info
     {
         get { return $"{this.Name} [{this.Level}]"; }
@@ -94,4 +91,6 @@ public class Creature
     {
         Go(DirectionParser.Parse(directions));
     }
+
+    public abstract int Power { get; }
 }
