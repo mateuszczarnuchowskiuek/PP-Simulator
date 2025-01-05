@@ -1,4 +1,6 @@
-﻿namespace Simulator;
+﻿using Simulator.Maps;
+
+namespace Simulator;
 
 internal class Program
 {
@@ -9,6 +11,7 @@ internal class Program
         Lab4a();
         Lab4b();
         Lab5a();
+        Lab5b();
     }
 
     static void Lab4a()
@@ -201,5 +204,103 @@ internal class Program
         //False
         p3 = new Point(-50, 4);
         Console.WriteLine(rec.Contains(p3));
+    }
+    static void Lab5b()
+    {
+        SmallSquareMap map;
+        Point p;
+
+        //SmallSquareMap() only accepts size from 5 to 20! (Parameter 'size')
+        try
+        {
+            map = new SmallSquareMap(2);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
+        //SmallSquareMap() only accepts size from 5 to 20! (Parameter 'size')
+        try
+        {
+            map = new SmallSquareMap(22);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
+        //Simulator.Maps.SmallSquareMap
+        map = new SmallSquareMap(5);
+        Console.WriteLine(map);
+
+        //Simulator.Maps.SmallSquareMap
+        map = new SmallSquareMap(20);
+        Console.WriteLine(map);
+
+        //Simulator.Maps.SmallSquareMap
+        map = new SmallSquareMap(15);
+        Console.WriteLine(map);
+
+        //False
+        p = new Point(-1, -1);
+        Console.WriteLine(map.Exist(p));
+
+        //True
+        p = new Point(0, 0);
+        Console.WriteLine(map.Exist(p));
+
+        //True
+        p = new Point(5, 5);
+        Console.WriteLine(map.Exist(p));
+
+        //True
+        p = new Point(14, 14);
+        Console.WriteLine(map.Exist(p));
+
+        //False
+        p = new Point(15, 15);
+        Console.WriteLine(map.Exist(p));
+
+        //(5, 6)
+        p = new Point(5, 5);
+        p = map.Next(p, Direction.Up);
+        Console.WriteLine(p);
+
+        //(6, 6)
+        p = new Point(5, 5);
+        p = map.NextDiagonal(p, Direction.Up);
+        Console.WriteLine(p);
+
+        //(5, 14)
+        p = new Point(5, 14);
+        p = map.Next(p, Direction.Up);
+        Console.WriteLine(p);
+
+        //(14, 5)
+        p = new Point(14, 5);
+        p = map.NextDiagonal(p, Direction.Up);
+        Console.WriteLine(p);
+
+        //(16, 30)
+        p = new Point(16, 30);
+        p = map.Next(p, Direction.Up);
+        Console.WriteLine(p);
+
+        //(16, 30)
+        p = new Point(16, 30);
+        p = map.NextDiagonal(p, Direction.Up);
+        Console.WriteLine(p);
+
+        //(5, 0)
+        p = new Point(5, -1);
+        p = map.Next(p, Direction.Up);
+        Console.WriteLine(p);
+
+        //(6, 0)
+        p = new Point(5, -1);
+        p = map.NextDiagonal(p, Direction.Up);
+        Console.WriteLine(p);
+
     }
 }
