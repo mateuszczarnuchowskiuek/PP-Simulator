@@ -31,7 +31,7 @@ public abstract class Creature
         //empty constructor
     }
 
-    public abstract void SayHi();
+    public abstract string Greeting();
     public abstract string Info { get; }
 
     public void Upgrade()
@@ -40,24 +40,23 @@ public abstract class Creature
         level = Validator.Limiter(level, 0, 10);
     }
 
-    public void Go(Direction direction)
-    {
-        string dir = direction.ToString();
-        dir = dir[0].ToString().ToLower() + dir[1..];
-        Console.WriteLine($"{this.Name} goes {dir}.");
-    }
+    public string Go(Direction direction) => $"{direction.ToString().ToLower()}";
 
-    public void Go(Direction[] directions)
+    public string[] Go(Direction[] directions)
     {
+        string[] output = new string[directions.Length];
+        int i = 0;
         foreach (Direction direction in directions)
         {
-            Go(direction);
+            output[i] = Go(direction);
+            i++;
         }
+        return output;
     }
 
-    public void Go(string directions)
+    public string[] Go(string directions)
     {
-        Go(DirectionParser.Parse(directions));
+        return Go(DirectionParser.Parse(directions));
     }
 
     public abstract int Power { get; }
