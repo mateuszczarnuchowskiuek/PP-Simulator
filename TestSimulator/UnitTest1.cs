@@ -1,4 +1,3 @@
-using Xunit;
 using Simulator;
 using Simulator.Maps;
 
