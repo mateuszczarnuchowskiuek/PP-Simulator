@@ -263,22 +263,22 @@ internal class Program
         p = new Point(15, 15);
         Console.WriteLine(map.Exist(p));
 
-        //(5, 6)
+        //(5, 6)//
         p = new Point(5, 5);
         p = map.Next(p, Direction.Up);
         Console.WriteLine(p);
 
-        //(6, 6)
+        //(6, 6)//
         p = new Point(5, 5);
         p = map.NextDiagonal(p, Direction.Up);
         Console.WriteLine(p);
 
-        //(5, 14)
+        //(5, 14)//
         p = new Point(5, 14);
         p = map.Next(p, Direction.Up);
         Console.WriteLine(p);
 
-        //(14, 5)
+        //(14, 5)//
         p = new Point(14, 5);
         p = map.NextDiagonal(p, Direction.Up);
         Console.WriteLine(p);
