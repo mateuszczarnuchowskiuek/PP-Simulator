@@ -42,9 +42,9 @@ public abstract class Creature
 
     public string Go(Direction direction) => $"{direction.ToString().ToLower()}";
 
-    public string[] Go(Direction[] directions)
+    public string[] Go(List<Direction> directions)
     {
-        string[] output = new string[directions.Length];
+        string[] output = new string[directions.Count];
         int i = 0;
         foreach (Direction direction in directions)
         {

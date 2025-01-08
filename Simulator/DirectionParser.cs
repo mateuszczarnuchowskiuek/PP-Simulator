@@ -1,23 +1,38 @@
+using System.Collections.Generic;
+
 namespace Simulator;
 
 public static class DirectionParser
 {
-    public static Direction[] Parse(string dirs)
+    public static List<Direction> Parse(string dirs)
     {
-        int counter = 0;
+        //int counter = 0;
+        List<Direction> directions = new();
         foreach (char character in dirs)
         {
             char letter = Char.ToUpper(character);
             if (letter == 'U')
-                counter++;
+            {
+                //counter++;
+                directions.Add(Direction.Up);
+            }
             if (letter == 'D')
-                counter++;
+            {
+                //counter++;
+                directions.Add(Direction.Down);
+            }
             if (letter == 'L')
-                counter++;
+            {
+                //counter++;
+                directions.Add(Direction.Left);
+            }
             if (letter == 'R')
-                counter++;
+            {
+                //counter++;
+                directions.Add(Direction.Right);
+            }
         }
-        Direction[] directions = new Direction[counter];
+        /* Direction[] directions = new Direction[counter];
         counter = 0;
         foreach (char character in dirs)
         {
@@ -42,7 +57,7 @@ public static class DirectionParser
                 directions[counter] = Direction.Right;
                 counter++;
             }
-        }
+        }*/
         return directions;
     }
 }

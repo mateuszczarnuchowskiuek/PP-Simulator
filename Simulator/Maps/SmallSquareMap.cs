@@ -1,27 +1,27 @@
 namespace Simulator.Maps;
 
-public class SmallSquareMap : Map
+public class SmallSquareMap : SmallMap
 {
-    private const int MinMapSize = 5;
-    private const int MaxMapSize = 20;
-    public readonly int Size;
-    private Rectangle mapRectangle;
+    //private const int MinMapSize = 5;
+    //private const int MaxMapSize = 20;
+    //public readonly int Size;
+    //private Rectangle mapRectangle;
 
-    public SmallSquareMap(int size)
+    public SmallSquareMap(int sizeX, int sizeY) : base(sizeX, sizeY)
     {
-        if (size < MinMapSize || size > MaxMapSize)
+        /*if (size < MinMapSize || size > MaxMapSize)
             throw new ArgumentOutOfRangeException(nameof(size), "SmallSquareMap() only accepts size from 5 to 20!");
         else
         {
             Size = size;
             mapRectangle = new Rectangle(new Point(0, 0), new Point(Size - 1, Size - 1));
-        }
+        }*/
     }
 
-    public override bool Exist(Point p)
+    /*public override bool Exist(Point p)
     {
         return mapRectangle.Contains(p);
-    }
+    }*/
 
     public override Point Next(Point p, Direction d)
     {
