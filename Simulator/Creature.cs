@@ -1,3 +1,5 @@
+using Simulator.Maps;
+
 namespace Simulator;
 
 public abstract class Creature
@@ -20,7 +22,8 @@ public abstract class Creature
             level = Validator.Limiter(value, 1, 10);
         }
     }
-
+    public Map? AssignedMap { get; set; }
+    public Point Position { get; set; }
     public Creature(string Name, int Level = 1)
     {
         this.Name = Name;
@@ -29,6 +32,12 @@ public abstract class Creature
     public Creature()
     {
         //empty constructor
+    }
+
+    public void InitMapAndPosition(Map map, Point position)
+    {
+        AssignedMap = map;
+        AssignedMap.Add(this, position);
     }
 
     public abstract string Greeting();
@@ -40,9 +49,21 @@ public abstract class Creature
         level = Validator.Limiter(level, 0, 10);
     }
 
-    public string Go(Direction direction) => $"{direction.ToString().ToLower()}";
+    public void Go(Direction direction)
+    {
+        //sprawdzić czy mapa nie jest nullem
+        //Map.Next()
+        //Zaktualizwać pozycję stwora lokalnie
+        //Map.Move() zaktalizować pozycję stwora na mapie
+        if (AssignedMap != null)
+        {
+            Point from = Position;
+            Position = AssignedMap.Next(Position, direction);   //creature position update
+            AssignedMap.Move(this, from, Position);     //map update
+        }
+    }
 
-    public string[] Go(List<Direction> directions)
+    /* public string[] Go(List<Direction> directions)
     {
         string[] output = new string[directions.Count];
         int i = 0;
@@ -52,12 +73,12 @@ public abstract class Creature
             i++;
         }
         return output;
-    }
+    } */
 
-    public string[] Go(string directions)
+    /* public string[] Go(string directions)
     {
         return Go(DirectionParser.Parse(directions));
-    }
+    } */
 
     public abstract int Power { get; }
 

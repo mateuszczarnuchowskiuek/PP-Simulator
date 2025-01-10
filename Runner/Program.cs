@@ -214,7 +214,7 @@ internal class Program
         //SmallSquareMap() only accepts size from 5 to 20! (Parameter 'size')
         try
         {
-            map = new SmallSquareMap(2);
+            map = new SmallSquareMap(2, 2);
         }
         catch (Exception e)
         {
@@ -224,7 +224,7 @@ internal class Program
         //SmallSquareMap() only accepts size from 5 to 20! (Parameter 'size')
         try
         {
-            map = new SmallSquareMap(22);
+            map = new SmallSquareMap(22, 22);
         }
         catch (Exception e)
         {
@@ -232,15 +232,15 @@ internal class Program
         }
 
         //Simulator.Maps.SmallSquareMap
-        map = new SmallSquareMap(5);
+        map = new SmallSquareMap(5, 5);
         Console.WriteLine(map);
 
         //Simulator.Maps.SmallSquareMap
-        map = new SmallSquareMap(20);
+        map = new SmallSquareMap(20, 20);
         Console.WriteLine(map);
 
         //Simulator.Maps.SmallSquareMap
-        map = new SmallSquareMap(15);
+        map = new SmallSquareMap(15, 15);
         Console.WriteLine(map);
 
         //False
