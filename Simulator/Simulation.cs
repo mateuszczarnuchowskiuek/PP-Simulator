@@ -54,7 +54,7 @@ public class Simulation
         /* implement getter only */
         get
         {
-            return directions[turnIndex % directions.Count].ToString();
+            return directions[turnIndex % directions.Count].ToString().ToLower();
         }
     }
 
@@ -65,7 +65,7 @@ public class Simulation
             return directions[turnIndex];
         }
     }
-    private int turnIndex = 0;
+    public int turnIndex = 0;
 
     /// <summary>
     /// Simulation constructor.

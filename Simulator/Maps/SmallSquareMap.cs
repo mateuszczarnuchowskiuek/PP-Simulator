@@ -7,7 +7,7 @@ public class SmallSquareMap : SmallMap
     //public readonly int Size;
     //private Rectangle mapRectangle;
 
-    public SmallSquareMap(int sizeX, int sizeY) : base(sizeX, sizeY)
+    public SmallSquareMap(int size) : base(size, size)
     {
         /*if (size < MinMapSize || size > MaxMapSize)
             throw new ArgumentOutOfRangeException(nameof(size), "SmallSquareMap() only accepts size from 5 to 20!");

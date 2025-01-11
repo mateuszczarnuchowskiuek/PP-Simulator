@@ -17,7 +17,7 @@ internal class Program
     }
     static void Testowa()
     {
-        SmallSquareMap map = new SmallSquareMap(10, 10);
+        SmallSquareMap map = new SmallSquareMap(10);
         List<Creature> c = new List<Creature>();
         c.Add(new Orc("stefan"));
         c.Add(new Orc("Bogdan"));
@@ -237,7 +237,7 @@ internal class Program
         //SmallSquareMap() only accepts size from 5 to 20! (Parameter 'size')
         try
         {
-            map = new SmallSquareMap(2, 2);
+            map = new SmallSquareMap(2);
         }
         catch (Exception e)
         {
@@ -247,7 +247,7 @@ internal class Program
         //SmallSquareMap() only accepts size from 5 to 20! (Parameter 'size')
         try
         {
-            map = new SmallSquareMap(22, 22);
+            map = new SmallSquareMap(22);
         }
         catch (Exception e)
         {
@@ -255,15 +255,15 @@ internal class Program
         }
 
         //Simulator.Maps.SmallSquareMap
-        map = new SmallSquareMap(5, 5);
+        map = new SmallSquareMap(5);
         Console.WriteLine(map);
 
         //Simulator.Maps.SmallSquareMap
-        map = new SmallSquareMap(20, 20);
+        map = new SmallSquareMap(20);
         Console.WriteLine(map);
 
         //Simulator.Maps.SmallSquareMap
-        map = new SmallSquareMap(15, 15);
+        map = new SmallSquareMap(15);
         Console.WriteLine(map);
 
         //False
