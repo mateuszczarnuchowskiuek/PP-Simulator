@@ -37,6 +37,7 @@ public abstract class Creature
     public void InitMapAndPosition(Map map, Point position)
     {
         AssignedMap = map;
+        Position = position;
         AssignedMap.Add(this, position);
     }
 

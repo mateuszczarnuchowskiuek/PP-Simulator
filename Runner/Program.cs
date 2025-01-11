@@ -13,8 +13,31 @@ internal class Program
         Lab4b();
         Lab5a();
         Lab5b();
+        //Testowa();
     }
-
+    static void Testowa()
+    {
+        SmallSquareMap map = new SmallSquareMap(10, 10);
+        List<Creature> c = new List<Creature>();
+        c.Add(new Orc("stefan"));
+        c.Add(new Orc("Bogdan"));
+        c.Add(new Elf("Maksymilian"));
+        List<Point> p = new List<Point>();
+        p.Add(new Point(5, 5));
+        p.Add(new Point(1, 0));
+        p.Add(new Point(2, 0));
+        Simulation sim = new Simulation(map, c, p, "uuuuuuu");
+        Console.WriteLine(c[0].Position);
+        Console.WriteLine(c[1].Position);
+        Console.WriteLine(c[2].Position);
+        sim.Turn();
+        sim.Turn();
+        sim.Turn();
+        Console.WriteLine(c[0].Position);
+        Console.WriteLine(c[1].Position);
+        Console.WriteLine(c[2].Position);
+        Console.WriteLine(map.At(2, 1)[0]);
+    }
     static void Lab4a()
     {
         Console.WriteLine("HUNT TEST\n");
