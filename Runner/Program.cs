@@ -18,7 +18,7 @@ internal class Program
     static void Testowa()
     {
         SmallSquareMap map = new SmallSquareMap(10);
-        List<Creature> c = new List<Creature>();
+        List<IMappable> c = new List<IMappable>();
         c.Add(new Orc("stefan"));
         c.Add(new Orc("Bogdan"));
         c.Add(new Elf("Maksymilian"));

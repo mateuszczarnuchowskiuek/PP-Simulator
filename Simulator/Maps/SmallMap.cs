@@ -14,7 +14,7 @@ public abstract class SmallMap : Map
         MapFields = new List<IMappable>[SizeX, SizeY];
         for (int i = 0; i < SizeY; i++)
         {
-            for (int j = 0; j < SizeY; j++)
+            for (int j = 0; j < SizeX; j++)
             {
                 MapFields[j, i] = new List<IMappable>();
             }

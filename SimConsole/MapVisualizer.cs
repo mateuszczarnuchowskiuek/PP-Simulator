@@ -33,16 +33,17 @@ public class MapVisualizer
         {
             line = "";
             line += Box.Vertical;
-            for (int j = 0; j < Map.SizeY; j++)
+            for (int j = 0; j < Map.SizeX; j++)
             {
                 if (Map.At(j, i).Count == 0)
                     line += "#";
                 else if (Map.At(j, i).Count == 1)
                 {
-                    if (Map.At(j, i)[0].GetType() == typeof(Orc))
+                    line += Map.At(j, i)[0].Symbol;
+                    /* if (Map.At(j, i)[0].GetType() == typeof(Orc))
                         line += "O";
                     else if (Map.At(j, i)[0].GetType() == typeof(Elf))
-                        line += "E";
+                        line += "E"; */
                 }
                 else
                 {

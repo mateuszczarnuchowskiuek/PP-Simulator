@@ -2,6 +2,10 @@ namespace Simulator;
 
 public class Orc : Creature
 {
+    public override string Symbol
+    {
+        get => "O";
+    }
     private int rage = 1;
     public int Rage //allowed range: [0-10]
     {

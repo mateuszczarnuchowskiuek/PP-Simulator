@@ -7,10 +7,10 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        SmallSquareMap map = new(5);
-        List<IMappable> mappables = [new Orc("Gorbag"), new Elf("Elandor")];
-        List<Point> points = [new(2, 2), new(3, 1)];
-        string moves = "dlrludl";
+        SmallTorusMap map = new(8, 6);
+        List<IMappable> mappables = [new Orc("Gorbag"), new Elf("Elandor"), new Animals { Description = "Rabbits", Size = 10 }, new Birds { Description = "Eagles" }, new Birds { Description = "Ostriches", Size = 4, CanFly = false }];
+        List<Point> points = [new(0, 0), new(1, 0), new(2, 0), new(3, 0), new(4, 0)];
+        string moves = "dddddurlldudrrl";
 
         Simulation simulation = new(map, mappables, points, moves);
         MapVisualizer mapVisualizer = new(simulation.Map);

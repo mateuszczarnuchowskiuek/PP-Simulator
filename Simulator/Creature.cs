@@ -4,6 +4,7 @@ namespace Simulator;
 
 public abstract class Creature : IMappable
 {
+    public abstract string Symbol { get; }
     private string name = "Unknown";
     public string Name
     {

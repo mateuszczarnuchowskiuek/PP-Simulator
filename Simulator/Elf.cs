@@ -2,6 +2,10 @@ namespace Simulator;
 
 public class Elf : Creature
 {
+    public override string Symbol
+    {
+        get => "E";
+    }
     private int agility = 1;
     public int Agility  //allowed range [0-10]
     {
