@@ -10,21 +10,21 @@ public class Simulation
     public Map Map { get; }
 
     /// <summary>
-    /// Creatures moving on the map.
+    /// Mappables moving on the map.
     /// </summary>
-    public List<Creature> Creatures { get; }
+    public List<IMappable> Mappables { get; }
 
     /// <summary>
-    /// Starting positions of creatures.
+    /// Starting positions of mappables.
     /// </summary>
     public List<Point> Positions { get; }
 
     /// <summary>
-    /// Cyclic list of creatures moves. 
+    /// Cyclic list of mappables moves. 
     /// Bad moves are ignored - use DirectionParser.
-    /// First move is for first creature, second for second and so on.
-    /// When all creatures make moves, 
-    /// next move is again for first creature and so on.
+    /// First move is for first mappable, second for second and so on.
+    /// When all mappables make moves, 
+    /// next move is again for first mappable and so on.
     /// </summary>
     public string Moves { get; }
 
@@ -34,14 +34,14 @@ public class Simulation
     public bool Finished = false;
 
     /// <summary>
-    /// Creature which will be moving current turn.
+    /// Mappables which will be moving current turn.
     /// </summary>
-    public Creature CurrentCreature
+    public IMappable CurrentMappable
     {
         /* implement getter only */
         get
         {
-            return Creatures[turnIndex % Creatures.Count];
+            return Mappables[turnIndex % Mappables.Count];
         }
     }
 
@@ -70,31 +70,31 @@ public class Simulation
     /// <summary>
     /// Simulation constructor.
     /// Throw errors:
-    /// if creatures' list is empty,
-    /// if number of creatures differs from 
+    /// if mappables' list is empty,
+    /// if number of mappables differs from 
     /// number of starting positions.
     /// </summary>
-    public Simulation(Map map, List<Creature> creatures, List<Point> positions, string moves)
+    public Simulation(Map map, List<IMappable> mappables, List<Point> positions, string moves)
     {
         Map = map;
-        Creatures = creatures;
+        Mappables = mappables;
         Positions = positions;
         Moves = moves;
 
-        if (Creatures.Count == 0)
-            throw new Exception("Creatures' list is empty");
-        if (Creatures.Count != Positions.Count)
-            throw new Exception("Number of creatures differs from number of starting positions");
+        if (Mappables.Count == 0)
+            throw new Exception("Mappables' list is empty");
+        if (Mappables.Count != Positions.Count)
+            throw new Exception("Number of mappables differs from number of starting positions");
 
         directions = DirectionParser.Parse(Moves);
-        for (int i = 0; i < Creatures.Count; i++)
+        for (int i = 0; i < Mappables.Count; i++)
         {
-            Creatures[i].InitMapAndPosition(Map, Positions[i]);
+            Mappables[i].InitMapAndPosition(Map, Positions[i]);
         }
     }
 
     /// <summary>
-    /// Makes one move of current creature in current direction.
+    /// Makes one move of current mappable in current direction.
     /// Throw error if simulation is finished.
     /// </summary>
     public void Turn()
@@ -104,7 +104,7 @@ public class Simulation
 
         //Console.WriteLine($"trunIndex: {turnIndex}");
         //Console.WriteLine($"CurrentDirection: {CurrentDirection}");
-        CurrentCreature.Go(CurrentDirection);
+        CurrentMappable.Go(CurrentDirection);
         turnIndex++;
 
         if (turnIndex >= directions.Count)

@@ -15,7 +15,7 @@ public class SmallSquareMapTests
     [InlineData(20)]
     public void Constructor_ValidSize_ShouldSetSize(int size)
     {
-        SmallSquareMap map = new SmallSquareMap(size, size);
+        SmallSquareMap map = new SmallSquareMap(size);
         Assert.Equal((size, size), (map.SizeX, map.SizeY));
     }
 
@@ -28,7 +28,7 @@ public class SmallSquareMapTests
     [InlineData(1000)]
     public void Constructor_InvalidSize_ShouldThrowArgumentOutOfRangeException(int size)
     {
-        Assert.Throws<ArgumentOutOfRangeException>(() => new SmallSquareMap(size, size));
+        Assert.Throws<ArgumentOutOfRangeException>(() => new SmallSquareMap(size));
     }
 
     [Theory]
@@ -46,7 +46,7 @@ public class SmallSquareMapTests
     public void Exist_ShouldReturnCorrectValue(int x, int y, int size, bool expected)
     {
         // Arrange
-        var map = new SmallSquareMap(size, size);
+        var map = new SmallSquareMap(size);
         var point = new Point(x, y);
         // Act
         var result = map.Exist(point);
@@ -77,7 +77,7 @@ public class SmallSquareMapTests
     public void Next_ShouldReturnCorrectNextPoint(int x, int y, Direction direction, int expectedX, int expectedY)
     {
         // Arrange
-        var map = new SmallSquareMap(15, 15);
+        var map = new SmallSquareMap(15);
         var point = new Point(x, y);
         // Act
         var nextPoint = map.Next(point, direction);
@@ -102,7 +102,7 @@ public class SmallSquareMapTests
     public void NextDiagonal_ShouldReturnCorrectNextPoint(int x, int y, Direction direction, int expectedX, int expectedY)
     {
         // Arrange
-        var map = new SmallSquareMap(15, 15);
+        var map = new SmallSquareMap(15);
         var point = new Point(x, y);
         // Act
         var nextPoint = map.NextDiagonal(point, direction);

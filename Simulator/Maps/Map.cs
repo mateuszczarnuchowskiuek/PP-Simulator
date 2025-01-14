@@ -21,15 +21,15 @@ public abstract class Map
         mapRectangle = new Rectangle(new Point(0, 0), new Point(SizeX - 1, SizeY - 1));
     }
 
-    public abstract void Add(Creature creature, Point point);
-    public abstract void Remove(Creature creature, Point point);
-    public void Move(Creature creature, Point from, Point to)
+    public abstract void Add(IMappable mappable, Point point);
+    public abstract void Remove(IMappable mappable, Point point);
+    public void Move(IMappable mappable, Point from, Point to)
     {
-        Remove(creature, from);
-        Add(creature, to);
+        Remove(mappable, from);
+        Add(mappable, to);
     }
-    public abstract List<Creature> At(Point point);
-    public abstract List<Creature> At(int x, int y);
+    public abstract List<IMappable> At(Point point);
+    public abstract List<IMappable> At(int x, int y);
 
     /// <summary>
     /// Check if give point belongs to the map.

@@ -8,11 +8,11 @@ internal class Program
     static void Main(string[] args)
     {
         SmallSquareMap map = new(5);
-        List<Creature> creatures = [new Orc("Gorbag"), new Elf("Elandor")];
+        List<IMappable> mappables = [new Orc("Gorbag"), new Elf("Elandor")];
         List<Point> points = [new(2, 2), new(3, 1)];
         string moves = "dlrludl";
 
-        Simulation simulation = new(map, creatures, points, moves);
+        Simulation simulation = new(map, mappables, points, moves);
         MapVisualizer mapVisualizer = new(simulation.Map);
 
         Console.WriteLine("SIMULATION!");
@@ -27,7 +27,7 @@ internal class Program
             simulation.Turn();
             Console.WriteLine("");
             Console.WriteLine($"Turn {simulation.turnIndex}");
-            Console.WriteLine($"{simulation.CurrentCreature} goes {simulation.CurrentMoveName}:");
+            Console.WriteLine($"{simulation.CurrentMappable} goes {simulation.CurrentMoveName}:");
             mapVisualizer.Draw();
         }
         Console.WriteLine("");
