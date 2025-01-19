@@ -1,5 +1,6 @@
 ﻿using System.Reflection.Metadata;
 using System.Runtime.Serialization;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -28,6 +29,7 @@ public class PrivacyModel : PageModel
     public Dictionary<Point, char> positions;
     public int Previous => Turn - 1;
     public int Next => Turn + 1;
+    string moves = "drludrludrlu";
 
 
     public void OnGet()
@@ -43,12 +45,13 @@ public class PrivacyModel : PageModel
         SmallTorusMap map = new(8, 5);
         List<IMappable> mappables = [new Orc("Gorbag"), new Elf("Elandor"), new Animals { Description = "Rabbits", Size = 10 }, new Birds { Description = "Eagles" }, new Birds { Description = "Ostriches", Size = 4, CanFly = false }];
         List<Point> points = [new(4, 4), new(2, 3), new(0, 3), new(3, 0), new(4, 0)];
-        string moves = "drludrludrluddrrrrwdjupr";
 
+        moves += "d";
         simulation = new Simulation(map, mappables, points, moves);
         simhistory = new SimulationHistory(simulation);
 
         simlength = DirectionParser.Parse(moves).Count;
+        //Console.WriteLine(simlength);
         positions = simhistory.TurnLogs[Turn].Symbols;
         width = simhistory.SizeX;
         height = simhistory.SizeY;
