@@ -19,7 +19,10 @@ public class PrivacyModel : PageModel
     public int Turn = 0;
     public string Orc = "Assets/orc.jpg";
     public string Elf = "Assets/elf.jpg";
+    public string Mix = "Assets/mix.jpg";
+    public string Animal = "Assets/animal.jpg";
     public string Bird = "Assets/bird.jpg";
+    public string LandBird = "Assets/landbird.jpg";
     public string Background = "Assets/background.jpg";
     public int CurrentTurn { get; private set; }
     public Dictionary<Point, char> positions;
@@ -38,9 +41,9 @@ public class PrivacyModel : PageModel
     public void PrepareSimulation()
     {
         SmallTorusMap map = new(8, 5);
-        List<IMappable> mappables = [new Orc("Gorbag")];
-        List<Point> points = [new Point(5, 2)];
-        string moves = "dddddd";
+        List<IMappable> mappables = [new Orc("Gorbag"), new Elf("Elandor"), new Animals { Description = "Rabbits", Size = 10 }, new Birds { Description = "Eagles" }, new Birds { Description = "Ostriches", Size = 4, CanFly = false }];
+        List<Point> points = [new(4, 4), new(2, 3), new(0, 3), new(3, 0), new(4, 0)];
+        string moves = "drludrludrluddrrrrwdjupr";
 
         simulation = new Simulation(map, mappables, points, moves);
         simhistory = new SimulationHistory(simulation);

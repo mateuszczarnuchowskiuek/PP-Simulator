@@ -33,6 +33,22 @@
                 {
                     <div class="map-field"><img src=@Model.Elf class="map-icon"></div>
                 }
+                else if (Model.positions[new Simulator.Point(j, i)] == 'A')
+                {
+                    <div class="map-field"><img src=@Model.Animal class="map-icon"></div>
+                }
+                else if (Model.positions[new Simulator.Point(j, i)] == 'B')
+                {
+                    <div class="map-field"><img src=@Model.Bird class="map-icon"></div>
+                }
+                else if (Model.positions[new Simulator.Point(j, i)] == 'b')
+                {
+                    <div class="map-field"><img src=@Model.LandBird class="map-icon"></div>
+                }
+                else if (Model.positions[new Simulator.Point(j, i)] == 'X')
+                {
+                    <div class="map-field"><img src=@Model.Mix class="map-icon"></div>
+                }
                 else
                 {
                     <div class="map-field"><img src=@Model.Background class="map-icon"></div>
