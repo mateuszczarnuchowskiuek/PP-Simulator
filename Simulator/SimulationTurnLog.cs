@@ -11,16 +11,16 @@ public class SimulationTurnLog
     /// Text representastion of moving object in this turn.
     /// CurrentMappable.ToString()
     /// </summary>
-    public required string Mappable { get; init; }
+    public string Mappable { get; init; }
     /// <summary>
     /// Text representation of move in this turn.
     /// CurrentMoveName.ToString();
     /// </summary>
-    public required string Move { get; init; }
+    public string Move { get; init; }
     /// <summary>
     /// Dictionary of IMappable.Symbol on the map in this turn.
     /// </summary>
-    public required Dictionary<Point, char> Symbols { get; init; }
+    public Dictionary<Point, char> Symbols { get; init; }
 
     public SimulationTurnLog(IMappable mappable, string move, Map map)
     {
@@ -33,7 +33,7 @@ public class SimulationTurnLog
             {
                 if (map.At(j, i).Count == 0)
                 {
-                    //Symbols.Add(new Point(j, i), '#');
+                    Symbols.Add(new Point(j, i), '#');
                 }
                 else if (map.At(j, i).Count == 1)
                 {
