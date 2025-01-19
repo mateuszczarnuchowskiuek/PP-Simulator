@@ -26,6 +26,9 @@ public abstract class Map
     public void Move(IMappable mappable, Point from, Point to)
     {
         Remove(mappable, from);
+        IMappable mapp;
+        if (mappable.AssignedMap.At(mappable.Position).Count > 0)
+            Remove(mappable.AssignedMap.At(mappable.Position)[0], to);
         Add(mappable, to);
     }
     public abstract List<IMappable> At(Point point);
