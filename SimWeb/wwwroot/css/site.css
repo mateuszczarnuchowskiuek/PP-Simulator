@@ -81,12 +81,10 @@ button
 {
     background-color: lightgreen;
     width: 1000px;
-    border: 2px solid black;
     display: grid;
 }
 
 .map-field
 {
-    background-color: orange;
-    border: 1px solid red;
+    border: 1px solid black;
 }

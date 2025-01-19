@@ -23,7 +23,7 @@ public class SimulationHistory
         int turn = 0;
         while (!_simulation.Finished)
         {
-            TurnLogs.Add(new SimulationTurnLog(_simulation.CurrentMappable, _simulation.CurrentMoveName, _simulation.Map) { Mappable = _simulation.CurrentMappable.ToString(), Move = _simulation.CurrentMoveName, Symbols = new Dictionary<Point, char>() });
+            TurnLogs.Add(new SimulationTurnLog(_simulation.CurrentMappable, _simulation.CurrentMoveName, _simulation.Map));
             _simulation.Turn();
             turn++;
         }

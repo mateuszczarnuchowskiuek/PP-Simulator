@@ -15,20 +15,28 @@
 }
 </style>
 <div class="map-header">
-    <button onclick="Next">⬅️</button>
+    <form method="post" asp-page-handler="Previous"><button>⬅️</button></form>
     <div class="turn">Tura: @Model.Turn</div>
-    <form method="previous"><button>➡️</button></form>
+    <form method="post" asp-page-handler="Next"><button>➡️</button></form>
 </div>
 <div class="map-container">
     <div class="map">
-        @for(int i=0; i<Model.width; i++)
+        @for (int i = Model.height - 1; i >= 0; i--)
         {
-            for(int j=0; j<Model.height; j++)
+            for (int j = 0; j < Model.width; j++)
             {
-                //if(Model.simhistory.TurnLogs[Model.Turn].Symbols[new Simulator.Point(i,j)]=='O')
-                //{
-                <div class="map-field"><img src=@Model.Orc class="map-icon"></div>
-                //}
+                if (Model.positions[new Simulator.Point(j, i)] == 'O')
+                {
+                    <div class="map-field"><img src=@Model.Orc class="map-icon"></div>
+                }
+                else if (Model.positions[new Simulator.Point(j, i)] == 'E')
+                {
+                    <div class="map-field"><img src=@Model.Elf class="map-icon"></div>
+                }
+                else
+                {
+                    <div class="map-field"><img src=@Model.Background class="map-icon"></div>
+                }
             }
         }
     </div>
