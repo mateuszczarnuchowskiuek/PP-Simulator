@@ -29,11 +29,14 @@ public class PrivacyModel : PageModel
 
     public void OnGet()
     {
+        Turn = HttpContext.Session.GetInt32("Turn") ?? 0;
+        simlength = HttpContext.Session.GetInt32("simlength") ?? 0;
         PrepareSimulation();
+        HttpContext.Session.SetInt32("Turn", Turn);
+        HttpContext.Session.SetInt32("simlength", simlength);
     }
     public void PrepareSimulation()
     {
-        Turn = HttpContext.Session.GetInt32("Turn") ?? 0;
         SmallTorusMap map = new(8, 5);
         List<IMappable> mappables = [new Orc("Gorbag")];
         List<Point> points = [new Point(5, 2)];
@@ -42,7 +45,7 @@ public class PrivacyModel : PageModel
         simulation = new Simulation(map, mappables, points, moves);
         simhistory = new SimulationHistory(simulation);
 
-        simlength = simulation.Moves.Length;
+        simlength = DirectionParser.Parse(moves).Count;
         positions = simhistory.TurnLogs[Turn].Symbols;
         width = simhistory.SizeX;
         height = simhistory.SizeY;
@@ -53,16 +56,24 @@ public class PrivacyModel : PageModel
     public IActionResult OnPostNext()
     {
         Turn = HttpContext.Session.GetInt32("Turn") ?? 0;
+        simlength = HttpContext.Session.GetInt32("simlength") ?? 0;
         Turn++;
+        if (Turn >= simlength)
+            Turn--;
         HttpContext.Session.SetInt32("Turn", Turn);
+        HttpContext.Session.SetInt32("simlength", simlength);
         PrepareSimulation();
         return Page();
     }
     public IActionResult OnPostPrevious()
     {
         Turn = HttpContext.Session.GetInt32("Turn") ?? 0;
+        simlength = HttpContext.Session.GetInt32("simlength") ?? 0;
         Turn--;
+        if (Turn < 0)
+            Turn++;
         HttpContext.Session.SetInt32("Turn", Turn);
+        HttpContext.Session.SetInt32("simlength", simlength);
         PrepareSimulation();
         return Page();
     }
